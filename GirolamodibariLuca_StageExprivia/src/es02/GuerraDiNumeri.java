@@ -18,7 +18,7 @@ public class GuerraDiNumeri {
 	public String toString() {
 		int differenza = sommaPari - sommaDispari;
 		if (differenza < 0) {
-			return "La guerra è stata vinta dai numeri DISPARI con una differenza di " + differenza + " unità";
+			return "La guerra è stata vinta dai numeri DISPARI con una differenza di " + (-differenza) + " unità";
 		} else if (differenza > 0) {
 			return "La guerra è stata vinta dai numeri PARI con una differenza di " + differenza + " unità";
 		} else {
@@ -26,3 +26,5 @@ public class GuerraDiNumeri {
 		}
 	}
 }
+
+//Ho messo il "-" prima di "differenza" alla riga 21 per non farmi stampare un numero negativo
