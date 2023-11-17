@@ -1,6 +1,6 @@
 package es04;
 
-public class StampaAlbero {
+public class StampaFunzioni {
 	public static void stampaFunzioneRicorsivaAlbero(Nodo radice) {
 		if (radice != null) {
 			System.out.println(radice.valoreString + ", " + radice.valoreInteger);
