@@ -1,0 +1,121 @@
+<h1>Gestione Prenotazioni</h1>
+<div>
+  <div *ngIf="showForm">
+    <h3>{{ selectedReservation.idPrenotazione ? 'Modifica Prenotazione' : 'Inserisci Nuova Prenotazione' }}</h3>
+    <form (submit)="submitForm()">
+      <mat-form-field>
+        <mat-label>ID Prenotazione:</mat-label>
+        <input matInput type="number" id="idPrenotazione" [(ngModel)]="selectedReservation.idPrenotazione"
+          name="idPrenotazione" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>ID Volo:</mat-label>
+        <input matInput type="text" id="idVolo" [(ngModel)]="selectedReservation.idVolo" name="idVolo" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>ID Cliente:</mat-label>
+        <input matInput type="number" id="idCliente" [(ngModel)]="selectedReservation.idCliente" name="idCliente"
+          required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data Prenotazione:</mat-label>
+        <input matInput type="date" id="dataPrenotazione" [(ngModel)]="selectedReservation.dataPrenotazione"
+          name="dataPrenotazione" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data Viaggio:</mat-label>
+        <input matInput type="date" id="dataViaggio" [(ngModel)]="selectedReservation.dataViaggio" name="dataViaggio"
+          required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Costo Fatturato:</mat-label>
+        <input matInput type="number" id="costoFatturato" [(ngModel)]="selectedReservation.costoFatturato"
+          name="costoFatturato" required>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit">{{ selectedReservation.idPrenotazione ? 'Modifica' :
+        'Inserisci' }}</button>
+      <button mat-raised-button type="button" (click)="clearForm()">Annulla</button>
+    </form>
+  </div>
+
+  <hr>
+
+  <!-- Tabella delle prenotazioni -->
+  <div>
+    <button mat-raised-button color="primary" (click)="showForm = !showForm">Inserisci Prenotazione</button>
+    <br>
+    <br>
+    <mat-table [dataSource]="reservations" matSort>
+      <h3>Lista delle Prenotazioni</h3>
+      <!-- ID Prenotazione Column -->
+      <ng-container matColumnDef="idPrenotazione">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Prenotazione </th>
+        <td mat-cell *matCellDef="let reservation"> {{ reservation.idPrenotazione }} </td>
+      </ng-container>
+
+      <!-- ID Volo Column -->
+      <ng-container matColumnDef="idVolo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Volo </th>
+        <td mat-cell *matCellDef="let reservation"> {{ reservation.idVolo }} </td>
+      </ng-container>
+
+      <!-- ID Cliente Column -->
+      <ng-container matColumnDef="idCliente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Cliente </th>
+        <td mat-cell *matCellDef="let reservation"> {{ reservation.idCliente }} </td>
+      </ng-container>
+
+      <!-- Data Prenotazione Column -->
+      <ng-container matColumnDef="dataPrenotazione">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Prenotazione </th>
+        <td mat-cell *matCellDef="let reservation"> {{ reservation.dataPrenotazione | date: 'yyyy-MM-dd' }} </td>
+      </ng-container>
+
+      <!-- Data Viaggio Column -->
+      <ng-container matColumnDef="dataViaggio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Viaggio </th>
+        <td mat-cell *matCellDef="let reservation"> {{ reservation.dataViaggio | date: 'yyyy-MM-dd' }} </td>
+      </ng-container>
+
+      <!-- Costo Fatturato Column -->
+      <ng-container matColumnDef="costoFatturato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Costo Fatturato </th>
+        <td mat-cell *matCellDef="let reservation"> {{ reservation.costoFatturato }} </td>
+      </ng-container>
+
+      <!-- Nome Giorno Column -->
+      <ng-container matColumnDef="nomeGiorno">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Giorno </th>
+        <td mat-cell *matCellDef="let reservation"> {{ reservation.nomeGiorno }} </td>
+      </ng-container>
+
+      <!-- Azioni Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Azioni </th>
+        <td mat-cell *matCellDef="let reservation">
+          <button mat-button color="primary" (click)="editReservation(reservation)">Modifica</button>
+          <button mat-button color="warn" (click)="deleteReservation(reservation.idPrenotazione)">Elimina</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Riga mostrata quando non ci sono dati corrispondenti. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="8">Nessun dato corrispondente al filtro</td>
+      </tr>
+
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Seleziona pagina delle prenotazioni"></mat-paginator>
+  </div>
+
+</div>
