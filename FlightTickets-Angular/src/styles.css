@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+
+body {
+    background-image: url('assets/images/sky.jpg');
+    background-size: cover; /* Imposta l'immagine a copertura dell'intero body */
+    background-repeat: no-repeat; /* Impedisce la ripetizione dell'immagine */
+  }
+  
