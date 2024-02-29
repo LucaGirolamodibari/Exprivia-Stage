@@ -1,0 +1,13 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .mat-toolbar span{
+    position: relative;
+    left: 580px;
+  }
+  .mat-toolbar img {
+    position: absolute;
+    left: 430px;
+    margin-right: 8px; 
+  }
