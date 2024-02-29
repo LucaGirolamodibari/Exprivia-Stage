@@ -18,7 +18,7 @@ public class Main {
 		alberoBinario.inserisciNodo("Luca", 11);
 		
 		System.out.println("Stampa dell'Albero Binario completo:");
-		StampaFunzioni.stampaFunzioneRicorsivaAlbero(alberoBinario.radice);
+		StampaFunzioni.stampaFunzioneRicorsivaAlbero(alberoBinario.radice, 0);
 		
 		System.out.println("\nStampa di tutti i Nodi Foglia:");
 		StampaFunzioni.stampaFunzioneRicorsivaNodiFoglia(alberoBinario.radice);

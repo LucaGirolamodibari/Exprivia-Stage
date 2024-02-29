@@ -1,11 +1,16 @@
 package es04;
 
 public class StampaFunzioni {
-	public static void stampaFunzioneRicorsivaAlbero(Nodo radice) {
+	public static void stampaFunzioneRicorsivaAlbero(Nodo radice, int livello) {
 		if (radice != null) {
+			stampaFunzioneRicorsivaAlbero(radice.figlioDestro, livello + 1);
+
+			for (int i = 0; i < livello; i++) {
+				System.out.print("  ");
+			}
+
 			System.out.println(radice.valoreString + ", " + radice.valoreInteger);
-			stampaFunzioneRicorsivaAlbero(radice.figlioSinistro);
-			stampaFunzioneRicorsivaAlbero(radice.figlioDestro);
+			stampaFunzioneRicorsivaAlbero(radice.figlioSinistro, livello + 1);
 		}
 	}
 
